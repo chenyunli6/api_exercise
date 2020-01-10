@@ -5,4 +5,11 @@ Rails.application.routes.draw do
       post :update_temp
     end
   end
+
+  namespace :api, :defaults => { :format => :json } do
+    namespace :v1 do
+      resources :trains, :only => [:index, :show]
+      resources :reservations, :only => [:show, :create, :update, :destroy]
+    end
+  end
 end
