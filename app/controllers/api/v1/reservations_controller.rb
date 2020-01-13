@@ -6,7 +6,7 @@ class Api::V1::ReservationsController < ApiController
   end
 
   def show
-    @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
+    @reservation = Reservation.find_by_booking_code!( params[:id] )
   end
 
   def create
@@ -27,7 +27,7 @@ class Api::V1::ReservationsController < ApiController
   end
 
   def update
-    @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
+    @reservation = Reservation.find_by_booking_code!( params[:id] )
     @reservation.update( :customer_name => params[:customer_name],
                          :customer_phone => params[:customer_phone] )
 
@@ -35,7 +35,7 @@ class Api::V1::ReservationsController < ApiController
   end
 
   def destroy
-    @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
+    @reservation = Reservation.find_by_booking_code!( params[:id] )
     @reservation.destroy
 
     render :json => { :message => "已取消定位" }
